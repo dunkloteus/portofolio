@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Detektor Penggunaan AC (IoT) | Portofolio Beny</title>
+    <meta name="description" content="Portofolio Ernest Benyamin Hinn Tambuwun (Beny): project, tentang saya, dan kontak.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-forest">
+    <div class="scene" aria-hidden="true"></div>
+
+    <main class="select">
+        <a class="select__logo" href="../index.html" aria-label="Kembali ke beranda">
+            <div class="logo logo--small">
+                <div class="logo__row">
+                    <svg class="logo__tree" viewBox="0 0 16 20" shape-rendering="crispEdges" aria-hidden="true">
+                    <g fill="#1f6b2a"><rect x="5" y="0" width="6" height="1"/><rect x="3" y="1" width="10" height="1"/><rect x="2" y="2" width="12" height="1"/><rect x="1" y="3" width="14" height="2"/><rect x="2" y="5" width="12" height="1"/><rect x="3" y="6" width="10" height="1"/><rect x="5" y="7" width="6" height="1"/></g>
+                    <g fill="#3fae3c"><rect x="5" y="1" width="5" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="2" y="3" width="10" height="2"/><rect x="3" y="5" width="8" height="1"/><rect x="5" y="6" width="5" height="1"/></g>
+                    <g fill="#8be05a"><rect x="5" y="2" width="3" height="1"/><rect x="3" y="3" width="4" height="1"/><rect x="9" y="4" width="2" height="1"/></g>
+                    <g fill="#6b4220"><rect x="7" y="8" width="2" height="9"/><rect x="6" y="16" width="1" height="2"/><rect x="9" y="16" width="1" height="2"/><rect x="5" y="17" width="1" height="1"/><rect x="10" y="17" width="1" height="1"/></g>
+                    <g fill="#8a5a2b"><rect x="7" y="8" width="1" height="8"/></g>
+                </svg>
+                    <span class="logo__text" data-text="Beny">Beny</span>
+                </div>
+            </div>
+        </a>
+
+        <h1 class="select__title"><span>Detektor Penggunaan AC (IoT)</span></h1>
+
+        <article class="panel panel--detail">
+
+            <ul class="chips">
+                    <li class="chip chip--year">2026</li>
+                    <li class="chip">Arduino IDE</li>
+                    <li class="chip">C++</li>
+                    <li class="chip">IR Receiver</li>
+                    <li class="chip">DHT11</li>
+                    <li class="chip">ThingSpeak</li>
+                </ul>
+
+            <p class="detail__lead">Sistem IoT yang mendeteksi kapan AC dinyalakan dan dimatikan lewat sinyal IR dari remote, menghitung berapa kali AC dipakai, serta mencatat suhu dan kelembaban ruangan. Datanya dikirim ke ThingSpeak lewat Wi-Fi untuk dipantau dan dianalisis.</p>
+
+            <section class="detail__section">
+                <h3>Cara kerja</h3>
+                <ul>
+                <li><b>IR receiver</b> membaca sinyal dari remote AC. Sketch mengenali dua kode, tombol ON dan tombol OFF; kode lain dicatat sebagai "bukan AC" dan diabaikan.</li>
+                <li>Status AC disimpan sebagai ON atau OFF. <b>Penghitung penggunaan</b> hanya bertambah saat AC berpindah dari OFF ke ON, jadi menekan ON berulang kali tidak dihitung ganda.</li>
+                <li><b>DHT11</b> membaca suhu dan kelembaban ruangan.</li>
+                <li>LED pada board menyala 300 ms setiap kali sinyal IR terbaca, sebagai tanda bahwa remote tertangkap.</li>
+            </ul>
+            </section>
+            <section class="detail__section">
+                <h3>Data yang dikirim ke ThingSpeak</h3>
+                <p>Empat field dikirim setiap 15 detik, sesuai batas minimum pembaruan ThingSpeak:</p>
+            <div class="table-wrap"><table class="table table--wrap">
+                <tr><th>Field</th><th>Isi</th></tr>
+                <tr><td>1</td><td>Suhu (&deg;C)</td></tr>
+                <tr><td>2</td><td>Kelembaban (%)</td></tr>
+                <tr><td>3</td><td>Status AC (1 = ON, 0 = OFF)</td></tr>
+                <tr><td>4</td><td>Jumlah penggunaan AC</td></tr>
+            </table></div>
+            </section>
+            <section class="detail__section">
+                <h3>Hasil pemantauan</h3>
+                <ul>
+                <li><b>Dashboard ThingSpeak:</b> grafik suhu sekitar 26&ndash;31 &deg;C dan kelembaban sekitar 50&ndash;75% sepanjang pemantauan; status AC berganti antara 1 dan 0 setiap kali AC dinyalakan atau dimatikan, dan penghitung penggunaan naik dari 11 ke 15.</li>
+                <li><b>Analisis sesi pemakaian:</b> grafik status AC terhadap waktu diubah menjadi durasi tiap sesi. Pada data contoh terdapat 3 sesi dengan total 559,4 menit dan rata-rata 186,5 menit per sesi.</li>
+            </ul>
+            <a href="../assets/img/projects/detektor-ac-1.webp" target="_blank" rel="noopener"><img class="detail__img detail__img--chart" src="../assets/img/projects/detektor-ac-1.webp" alt="Empat grafik ThingSpeak: suhu, kelembaban, status IR receiver AC, dan jumlah penggunaan"></a>
+            <p class="detail__cap">Dashboard ThingSpeak: suhu, kelembaban, status AC, dan jumlah penggunaan (klik untuk memperbesar).</p>
+
+            <a href="../assets/img/projects/detektor-ac-2.webp" target="_blank" rel="noopener"><img class="detail__img detail__img--chart" src="../assets/img/projects/detektor-ac-2.webp" alt="Grafik status AC dari waktu ke waktu dan durasi tiap sesi pemakaian"></a>
+            <p class="detail__cap">Analisis status AC dan durasi tiap sesi pemakaian (klik untuk memperbesar).</p>
+            </section>
+            <section class="detail__section">
+                <h3>Komponen dan pustaka</h3>
+                <ul>
+                <li><b>Perangkat:</b> mikrokontroler ber-Wi-Fi, IR receiver (pin 15), sensor DHT11 (pin 4), dan LED bawaan board (pin 2).</li>
+                <li><b>Pustaka Arduino:</b> ThingSpeak, DHT sensor library, dan IRremoteESP8266.</li>
+                <li>Program ditulis dalam C++ di Arduino IDE; log lengkap tersedia lewat Serial Monitor (115200 baud).</li>
+            </ul>
+            </section>
+            <section class="detail__section">
+                <h3>Menjalankan</h3>
+                <ul>
+                <li>Buka sketch di Arduino IDE dan pasang ketiga pustaka di atas.</li>
+                <li>Isi nama Wi-Fi, password, nomor channel, dan Write API Key ThingSpeak milik sendiri.</li>
+                <li>Kode tombol ON dan OFF dibuat untuk satu remote tertentu. Untuk remote lain, buka Serial Monitor, tekan tombol ON dan OFF, lalu salin nilai "Kode IR" yang muncul ke <b>IR_CODE_ON</b> dan <b>IR_CODE_OFF</b>.</li>
+            </ul>
+            </section>
+
+            <div class="detail__links">
+                <a class="btn btn--small" href="https://github.com/dunkloteus/dectector-pengguna-AC-menggunakan-ir-receiver-ac-DHT-11-Arduino-ESP8266-Thingspeak-" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </article>
+
+        <div class="select__buttons">
+            <a class="btn" href="../project.html">Back</a>
+        </div>
+    </main>
+
+    <footer class="foot">
+        <span>v1.0.0</span>
+        <span>&copy; 2026 Beny</span>
+    </footer>
+</body>
+</html>

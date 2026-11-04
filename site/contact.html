@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact Me | Portofolio Beny</title>
+    <meta name="description" content="Portofolio Ernest Benyamin Hinn Tambuwun (Beny): project, tentang saya, dan kontak.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-snow">
+    <div class="scene" aria-hidden="true"></div>
+
+    <main class="select">
+        <a class="select__logo" href="index.html" aria-label="Kembali ke beranda">
+            <div class="logo logo--small">
+                <div class="logo__row">
+                    <svg class="logo__tree" viewBox="0 0 16 20" shape-rendering="crispEdges" aria-hidden="true">
+                    <g fill="#1f6b2a"><rect x="5" y="0" width="6" height="1"/><rect x="3" y="1" width="10" height="1"/><rect x="2" y="2" width="12" height="1"/><rect x="1" y="3" width="14" height="2"/><rect x="2" y="5" width="12" height="1"/><rect x="3" y="6" width="10" height="1"/><rect x="5" y="7" width="6" height="1"/></g>
+                    <g fill="#3fae3c"><rect x="5" y="1" width="5" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="2" y="3" width="10" height="2"/><rect x="3" y="5" width="8" height="1"/><rect x="5" y="6" width="5" height="1"/></g>
+                    <g fill="#8be05a"><rect x="5" y="2" width="3" height="1"/><rect x="3" y="3" width="4" height="1"/><rect x="9" y="4" width="2" height="1"/></g>
+                    <g fill="#6b4220"><rect x="7" y="8" width="2" height="9"/><rect x="6" y="16" width="1" height="2"/><rect x="9" y="16" width="1" height="2"/><rect x="5" y="17" width="1" height="1"/><rect x="10" y="17" width="1" height="1"/></g>
+                    <g fill="#8a5a2b"><rect x="7" y="8" width="1" height="8"/></g>
+                </svg>
+                    <span class="logo__text" data-text="Beny">Beny</span>
+                </div>
+            </div>
+        </a>
+
+        <h1 class="select__title"><span>Contact Me</span></h1>
+
+        <section class="panel" aria-label="Kontak">
+            <p class="detail__lead">Kirim pesan lewat form di bawah, atau hubungi saya lewat kanal lain.</p>
+            <section class="formbox" aria-labelledby="form-title">
+                <h2 class="card__title" id="form-title">Kirim pesan</h2>
+                <form id="contact-form" action="https://formspree.io/f/xeaavgyl" method="POST">
+                    <div class="form-field">
+                        <label for="f-name">Nama</label>
+                        <input id="f-name" type="text" name="name" maxlength="80" autocomplete="name" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="f-email">Email</label>
+                        <input id="f-email" type="email" name="email" maxlength="120" autocomplete="email" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="f-message">Pesan</label>
+                        <textarea id="f-message" name="message" rows="5" maxlength="2000" required></textarea>
+                    </div>
+                    <input type="hidden" name="_subject" value="Pesan baru dari portofolio Beny">
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none">
+                    <div class="form-actions">
+                        <button class="btn btn--small" type="submit">Kirim</button>
+                        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                    </div>
+                </form>
+            </section>
+            <script>
+            (function () {
+                var form = document.getElementById('contact-form');
+                if (!form || !window.fetch || !window.FormData) return;
+                var statusEl = document.getElementById('form-status');
+                var btn = form.querySelector('button[type="submit"]');
+
+                function setStatus(text, kind) {
+                    statusEl.textContent = text;
+                    statusEl.className = 'form-status' + (kind ? ' is-' + kind : '');
+                }
+
+                form.addEventListener('submit', function (ev) {
+                    ev.preventDefault();
+                    btn.disabled = true;
+                    btn.textContent = 'Mengirim...';
+                    setStatus('', '');
+
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    }).then(function (res) {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        form.reset();
+                        setStatus('Pesan terkirim. Terima kasih!', 'ok');
+                        btn.disabled = false;
+                        btn.textContent = 'Kirim';
+                    }).catch(function () {
+                        // Gagal lewat halaman ini: kirim dengan cara biasa (halaman Formspree).
+                        setStatus('Mengalihkan ke halaman pengiriman Formspree...', 'err');
+                        form.submit();
+                    });
+                });
+            })();
+            </script>
+            <a class="card" href="https://www.linkedin.com/in/ben-tambuwun-21389339a" target="_blank" rel="noopener noreferrer">
+                <div class="card__thumb card__thumb--glyph" aria-hidden="true">in</div>
+                <div class="card__body">
+                    <h2 class="card__title">LinkedIn</h2>
+                    <p class="card__desc">linkedin.com/in/ben-tambuwun-21389339a</p>
+                </div>
+            </a>
+            <a class="card" href="https://github.com/dunkloteus" target="_blank" rel="noopener noreferrer">
+                <div class="card__thumb card__thumb--glyph" aria-hidden="true">GH</div>
+                <div class="card__body">
+                    <h2 class="card__title">GitHub</h2>
+                    <p class="card__desc">github.com/dunkloteus</p>
+                </div>
+            </a>
+            <div class="card card--static">
+                <div class="card__thumb card__thumb--glyph" aria-hidden="true">ID</div>
+                <div class="card__body">
+                    <h2 class="card__title">Lokasi</h2>
+                    <p class="card__desc">Semarang, Indonesia</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="select__buttons">
+            <a class="btn" href="index.html">Back</a>
+            <a class="btn" href="about.html">About</a>
+        </div>
+    </main>
+
+    <footer class="foot">
+        <span>v1.0.0</span>
+        <span>&copy; 2026 Beny</span>
+    </footer>
+</body>
+</html>

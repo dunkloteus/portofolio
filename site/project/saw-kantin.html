@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DSS Penagihan Utang Kantin | Portofolio Beny</title>
+    <meta name="description" content="Portofolio Ernest Benyamin Hinn Tambuwun (Beny): project, tentang saya, dan kontak.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-forest">
+    <div class="scene" aria-hidden="true"></div>
+
+    <main class="select">
+        <a class="select__logo" href="../index.html" aria-label="Kembali ke beranda">
+            <div class="logo logo--small">
+                <div class="logo__row">
+                    <svg class="logo__tree" viewBox="0 0 16 20" shape-rendering="crispEdges" aria-hidden="true">
+                    <g fill="#1f6b2a"><rect x="5" y="0" width="6" height="1"/><rect x="3" y="1" width="10" height="1"/><rect x="2" y="2" width="12" height="1"/><rect x="1" y="3" width="14" height="2"/><rect x="2" y="5" width="12" height="1"/><rect x="3" y="6" width="10" height="1"/><rect x="5" y="7" width="6" height="1"/></g>
+                    <g fill="#3fae3c"><rect x="5" y="1" width="5" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="2" y="3" width="10" height="2"/><rect x="3" y="5" width="8" height="1"/><rect x="5" y="6" width="5" height="1"/></g>
+                    <g fill="#8be05a"><rect x="5" y="2" width="3" height="1"/><rect x="3" y="3" width="4" height="1"/><rect x="9" y="4" width="2" height="1"/></g>
+                    <g fill="#6b4220"><rect x="7" y="8" width="2" height="9"/><rect x="6" y="16" width="1" height="2"/><rect x="9" y="16" width="1" height="2"/><rect x="5" y="17" width="1" height="1"/><rect x="10" y="17" width="1" height="1"/></g>
+                    <g fill="#8a5a2b"><rect x="7" y="8" width="1" height="8"/></g>
+                </svg>
+                    <span class="logo__text" data-text="Beny">Beny</span>
+                </div>
+            </div>
+        </a>
+
+        <h1 class="select__title"><span>DSS Penagihan Utang Kantin</span></h1>
+
+        <article class="panel panel--detail">
+            <img class="detail__img" src="../assets/img/projects/saw-kantin.webp" alt="Tampilan aplikasi DSS Prioritas Penagihan Utang dengan form input data dan tabel peringkat">
+            <p class="detail__cap">Tampilan aplikasi: form input data mahasiswa dan tabel hasil perankingan.</p>
+
+            <ul class="chips">
+                    <li class="chip chip--year">2026</li>
+                    <li class="chip">Python</li>
+                    <li class="chip">Tkinter</li>
+                    <li class="chip">SAW</li>
+                    <li class="chip">AHP</li>
+                </ul>
+
+            <p class="detail__lead">Aplikasi desktop berbasis Python yang menghitung urutan prioritas penagihan utang mahasiswa di kantin kampus memakai metode SAW (Simple Additive Weighting), dengan pilihan bobot kriteria dari AHP.</p>
+
+            <section class="detail__section">
+                <h3>Latar belakang</h3>
+                <p>Kantin kampus yang membolehkan mahasiswa berutang perlu memutuskan siapa yang ditagih lebih dulu. Menilai hanya dari besar utang sering kurang adil, jadi aplikasi ini menggabungkan beberapa kriteria sekaligus dan menghasilkan peringkat yang bisa dipertanggungjawabkan.</p>
+            </section>
+            <section class="detail__section">
+                <h3>Kriteria penilaian</h3>
+                <ul>
+                <li><b>C1 Total utang</b> (Rp)</li>
+                <li><b>C2 Lama hutang</b> (hari)</li>
+                <li><b>C3 Frekuensi belanja</b> per bulan</li>
+                <li><b>C4 Semester</b> (1&ndash;8), diubah ke skala prioritas: semester 1&ndash;4 = 0,33; 5&ndash;6 = 0,67; 7&ndash;8 = 1,0</li>
+            </ul>
+            <p>Semua kriteria diperlakukan sebagai kriteria keuntungan (benefit): makin besar nilainya, makin tinggi prioritas penagihan.</p>
+            </section>
+            <section class="detail__section">
+                <h3>Cara kerja</h3>
+                <ul>
+                <li><b>SAW dengan bobot manual:</b> nilai tiap kriteria dinormalisasi (dibagi nilai maksimum kriterianya), lalu dikalikan bobot. Bobot bawaan 0,4 / 0,3 / 0,2 / 0,1.</li>
+                <li><b>AHP + SAW:</b> pengguna mengisi matriks perbandingan berpasangan 4&times;4 (skala Saaty 1&ndash;9, bagian kebalikannya terisi otomatis). Bobot dihitung dengan rata-rata geometrik, lalu diuji konsistensinya (&lambda;max, CI, CR). Bobot hanya dipakai kalau CR &lt; 0,1; kalau tidak, pengguna diminta merevisi penilaiannya.</li>
+                <li><b>Hasil:</b> tabel peringkat berisi skor akhir dan rekomendasi tindakan: tagih segera, koordinasi, tawarkan angsuran, teguran tertulis, atau pantau saja.</li>
+            </ul>
+            <pre class="code">Rij = Xij / max(Xj)
+Vi  = (w1 x Ri1) + (w2 x Ri2) + (w3 x Ri3) + (w4 x Ri4)</pre>
+            </section>
+            <section class="detail__section">
+                <h3>Contoh hasil (data sampel bawaan, bobot manual)</h3>
+                <div class="table-wrap"><table class="table">
+                <tr><th>Rank</th><th>Nama</th><th>Utang (Rp)</th><th>Hari</th><th>Frek.</th><th>Sem.</th><th>Skor</th></tr>
+                <tr><td>1</td><td>Budi</td><td>500.000</td><td>30</td><td>10</td><td>8</td><td>0,7000</td></tr>
+                <tr><td>2</td><td>Citra</td><td>750.000</td><td>14</td><td>8</td><td>6</td><td>0,6670</td></tr>
+                <tr><td>3</td><td>Eka</td><td>300.000</td><td>20</td><td>15</td><td>4</td><td>0,5263</td></tr>
+                <tr><td>4</td><td>Dani</td><td>100.000</td><td>45</td><td>2</td><td>8</td><td>0,4800</td></tr>
+                <tr><td>5</td><td>Ani</td><td>200.000</td><td>5</td><td>4</td><td>2</td><td>0,2263</td></tr>
+            </table></div>
+            </section>
+            <section class="detail__section">
+                <h3>Fitur lain</h3>
+                <ul>
+                <li>Tambah data mahasiswa dengan validasi input, hapus baris terpilih, dan reset semua data.</li>
+                <li>Tombol "Load Sampel Laporan" untuk mencoba dengan 5 data contoh.</li>
+                <li>Ditulis hanya dengan pustaka standar Python (Tkinter dan math), tanpa instalasi tambahan.</li>
+            </ul>
+            </section>
+            <section class="detail__section">
+                <h3>Menjalankan</h3>
+                <pre class="code">python dss_kantin_hc.py</pre>
+            <p>Butuh Python 3 dengan Tkinter (sudah termasuk di instalasi Python standar untuk Windows).</p>
+            </section>
+
+            <div class="detail__links">
+                <a class="btn btn--small" href="https://github.com/dunkloteus/Implementasi-Metode-SAW-untuk-Prioritas-Penagihan-Utang-Kantin-Kampus" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </article>
+
+        <div class="select__buttons">
+            <a class="btn" href="../project.html">Back</a>
+        </div>
+    </main>
+
+    <footer class="foot">
+        <span>v1.0.0</span>
+        <span>&copy; 2026 Beny</span>
+    </footer>
+</body>
+</html>

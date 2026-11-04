@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>jMessenger: Chat dan Game | Portofolio Beny</title>
+    <meta name="description" content="Portofolio Ernest Benyamin Hinn Tambuwun (Beny): project, tentang saya, dan kontak.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="bg-forest">
+    <div class="scene" aria-hidden="true"></div>
+
+    <main class="select">
+        <a class="select__logo" href="../index.html" aria-label="Kembali ke beranda">
+            <div class="logo logo--small">
+                <div class="logo__row">
+                    <svg class="logo__tree" viewBox="0 0 16 20" shape-rendering="crispEdges" aria-hidden="true">
+                    <g fill="#1f6b2a"><rect x="5" y="0" width="6" height="1"/><rect x="3" y="1" width="10" height="1"/><rect x="2" y="2" width="12" height="1"/><rect x="1" y="3" width="14" height="2"/><rect x="2" y="5" width="12" height="1"/><rect x="3" y="6" width="10" height="1"/><rect x="5" y="7" width="6" height="1"/></g>
+                    <g fill="#3fae3c"><rect x="5" y="1" width="5" height="1"/><rect x="3" y="2" width="8" height="1"/><rect x="2" y="3" width="10" height="2"/><rect x="3" y="5" width="8" height="1"/><rect x="5" y="6" width="5" height="1"/></g>
+                    <g fill="#8be05a"><rect x="5" y="2" width="3" height="1"/><rect x="3" y="3" width="4" height="1"/><rect x="9" y="4" width="2" height="1"/></g>
+                    <g fill="#6b4220"><rect x="7" y="8" width="2" height="9"/><rect x="6" y="16" width="1" height="2"/><rect x="9" y="16" width="1" height="2"/><rect x="5" y="17" width="1" height="1"/><rect x="10" y="17" width="1" height="1"/></g>
+                    <g fill="#8a5a2b"><rect x="7" y="8" width="1" height="8"/></g>
+                </svg>
+                    <span class="logo__text" data-text="Beny">Beny</span>
+                </div>
+            </div>
+        </a>
+
+        <h1 class="select__title"><span>jMessenger: Chat dan Game</span></h1>
+
+        <article class="panel panel--detail">
+            <img class="detail__img" src="../assets/img/projects/jmessenger.webp" alt="Dua jendela jMessenger yang sedang memainkan gunting-batu-kertas dan jendela server di belakangnya">
+            <p class="detail__cap">Dua client jMessenger bermain gunting-batu-kertas, dengan jendela server di belakang.</p>
+
+            <ul class="chips">
+                    <li class="chip chip--year">2025</li>
+                    <li class="chip">Java</li>
+                    <li class="chip">Swing</li>
+                    <li class="chip">Socket TCP</li>
+                </ul>
+
+            <p class="detail__lead">Aplikasi chat desktop berbasis Java (Swing) dengan arsitektur client-server lewat socket TCP. Selain mengobrol, dua pemain bisa saling menantang bermain gunting-batu-kertas langsung dari jendela chat.</p>
+
+            <section class="detail__section">
+                <h3>Tentang project</h3>
+                <p>Project ini dibuat dengan Java, bukan JavaScript, dan antarmukanya dirancang dengan GUI Builder NetBeans. Server dan client berkomunikasi lewat objek <b>Message</b> (tipe, pengirim, isi, penerima) yang dikirim melalui socket pada port 13000.</p>
+            </section>
+            <section class="detail__section">
+                <h3>Fitur chat</h3>
+                <ul>
+                <li>Server dengan jendela log yang menampilkan koneksi client; dirancang untuk dua pengguna sekaligus.</li>
+                <li>Login dengan nickname dan daftar pengguna yang sedang online.</li>
+                <li>Pesan ke semua ("All") atau pesan pribadi ke satu pengguna.</li>
+                <li>Kirim dan terima file antar pengguna.</li>
+                <li>Riwayat percakapan.</li>
+            </ul>
+            </section>
+            <section class="detail__section">
+                <h3>Game gunting-batu-kertas</h3>
+                <ul>
+                <li>Pilih lawan dari daftar pengguna, lalu tekan Gunting, Batu, atau Kertas.</li>
+                <li>Pesan <b>[GAME]</b> di jendela chat menampilkan ajakan bermain, status menunggu lawan, dan hasil: menang, kalah, atau seri.</li>
+            </ul>
+            </section>
+            <section class="detail__section">
+                <h3>Versi ular tangga</h3>
+                <p>Folder project juga memuat versi lain yang memakai permainan ular tangga dua pemain: papan 35 petak dengan tangga dan ular, dadu acak 1&ndash;6, dan bidak yang memantul mundur bila melewati petak terakhir.</p>
+            </section>
+            <section class="detail__section">
+                <h3>Eksperimen tambahan</h3>
+                <ul>
+                <li>Perintah "api" yang membaca tabel MySQL lewat JDBC dan mengirim hasilnya ke client.</li>
+                <li>Server socket kecil untuk menguji koneksi dari halaman PHP (port 12000).</li>
+            </ul>
+            </section>
+            <section class="detail__section">
+                <h3>Menjalankan</h3>
+                <ul>
+                <li>Jalankan <b>jServer</b> lebih dulu.</li>
+                <li>Jalankan dua instance <b>jMessenger</b>, isi host <b>localhost</b> dan port <b>13000</b>, lalu login dengan nickname yang berbeda.</li>
+                <li>Pilih lawan di daftar pengguna dan mulai bermain.</li>
+            </ul>
+            </section>
+
+            <div class="detail__links">
+                <a class="btn btn--small" href="https://github.com/dunkloteus/Gunting-Batu-Kertas-sederhana-mengunakan-JavaScript" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+        </article>
+
+        <div class="select__buttons">
+            <a class="btn" href="../project.html">Back</a>
+        </div>
+    </main>
+
+    <footer class="foot">
+        <span>v1.0.0</span>
+        <span>&copy; 2026 Beny</span>
+    </footer>
+</body>
+</html>
